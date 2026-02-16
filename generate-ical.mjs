@@ -1,10 +1,12 @@
-import { getEventDate } from "./common.mjs";
+import { fetchDescription, getEventDate } from "./common.mjs";
 
 import daysData from "./days.json" with { type: "json" };
 
-for (let i = 2020; i <= 2030; i++) {
+const events = [];
+
+for (let i = 2024; i <= 2026; i++) {
   // Loop through days.json
-  daysData.forEach((event_) => {
+  for (const event_ of daysData) {
     // Gets the date of events every year
     const eventDate = getEventDate(
       i,
@@ -14,8 +16,7 @@ for (let i = 2020; i <= 2030; i++) {
     );
     // Converts the date to string and turns it into an array
     const dateArr = eventDate.toISOString().slice(0, 10).split("-");
-    fetch(event_.descriptionURL)
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  });
+    const description = await fetchDescription(event_.descriptionURL);
+    events.push({ title: event_.name, start: dateArr, description });
+  }
 }
