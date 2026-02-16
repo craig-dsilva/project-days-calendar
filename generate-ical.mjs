@@ -1,4 +1,5 @@
 import * as ics from "ics";
+import { writeFileSync } from "fs";
 
 import { fetchDescription, getEventDate } from "./common.mjs";
 
@@ -26,10 +27,15 @@ for (let i = 2024; i <= 2026; i++) {
 }
 
 // ics
+// This generates value or error when creating ics data
 const { error, value } = ics.createEvents(events);
 
-if (error) {
-  console.error(error);
-}
+// Prints an error message if an error occurs when creating events
+if (error) console.error(error);
 
-console.log(value);
+try {
+  // Generates the ics file
+  writeFileSync("event.ics", value);
+} catch (error) {
+  console.error;
+}
