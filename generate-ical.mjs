@@ -14,5 +14,8 @@ for (let i = 2020; i <= 2030; i++) {
     );
     // Converts the date to string and turns it into an array
     const dateArr = eventDate.toISOString().slice(0, 10).split("-");
+    fetch(event_.descriptionURL)
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   });
 }
