@@ -6,6 +6,29 @@
 import { getGreeting } from "./common.mjs";
 import daysData from "./days.json" with { type: "json" };
 
-window.onload = function() {
-    document.querySelector("body").innerText = `${getGreeting()} - there are ${daysData.length} known days`;
+// current date for initial render 
+
+let currentDate = new Date;
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear(); 
+
+// months names for displaying header
+
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+
+  function renderCalendar(currentMonth, currentYear){
+
+    // get the calendar container
+    const calendarDiv = document.getElementById("calendar");
+
+    // cleat any existing content so we can redraw..
+
+    calendarDiv.innerHTML = "";
+
+    // update the month/year header
+
+    document.getElementById("current-month").innerText = `${monthNames[currentMonth]} ${currentYear}`;
 }
+
+  
