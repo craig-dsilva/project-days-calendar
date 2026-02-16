@@ -1,7 +1,13 @@
-// This is a placeholder file which shows how you can access functions and data defined in other files. You can delete the contents of the file once you have understood how it works.
-// It can be run with `node`.
+import { getEventDate } from "./common.mjs";
 
-import { getGreeting } from "./common.mjs";
 import daysData from "./days.json" with { type: "json" };
 
-console.log(`{getGreeting()} - there are ${daysData.length} known days`);
+console.log(daysData[0]);
+console.log(
+  getEventDate(
+    2026,
+    daysData[0].monthName,
+    daysData[0].dayName,
+    daysData[0].occurrence,
+  ),
+);
