@@ -26,6 +26,9 @@ const weeksArr = [
 
 const occurrenceNumber = { first: 1, second: 2, third: 3, last: -1 };
 
+// This function get the EventDate
+// Example usage of this function for Ada Lovelace Day
+// getEventDate(2026, monthsArr.indexOf("October"), weeksArr.indexOf("Tuesday"), occurrenceNumber["second"]);
 export function getEventDate(year, month, dayOfWeek, occurrence) {
   const monthIndex = monthsArr.indexOf(month);
   const weekIndex = weeksArr.indexOf(dayOfWeek);
@@ -46,6 +49,3 @@ export function getEventDate(year, month, dayOfWeek, occurrence) {
     return new Date(year, monthIndex, day, 3);
   }
 }
-
-// Example usage for Ada Lovelace Day
-// getEventDate(2026, monthsArr.indexOf("October"), weeksArr.indexOf("Tuesday"), occurrenceNumber["second"]);
