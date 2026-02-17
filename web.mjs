@@ -6,11 +6,11 @@
 import { monthsArr } from "./common.mjs";
 import daysData from "./days.json" with { type: "json" };
 
-// Track current month/year 
+// Track current month/year
 
 let currentDate = new Date();
 let currentMonth = currentDate.getMonth();
-let currentYear = currentDate.getFullYear(); 
+let currentYear = currentDate.getFullYear();
 
 // DOM references
 
@@ -21,60 +21,84 @@ const nextBtn = document.getElementById("next");
 const monthDropdown = document.getElementById("month-select");
 const yearDropdown = document.getElementById("year-select");
 
-//Populate month/year dropdowns
+// populate year/month dropdown
+function populateDropdowns() {
+  // Months
 
-//const months = ["January", "February", "March", "April", "May", "June",
-  //"July", "August", "September", "October", "November", "December"];
+  monthDropdown.innerHTML = "";
+  monthsArr.forEach((monthName, index) => {
+    const option = document.createElement("option");
+    option.value = index;
+    option.textContent = monthName;
+    monthDropdown.appendChild(option);
+  });
 
-  function populateDropdowns () {
-    // Months
+  monthDropdown.value = currentMonth;
+  // Years
 
-    monthDropdown.innerHTML = "";
-    monthsArr.forEach((name, index) => {
-      const option = document.createElement("option");
-      option.value = index;
-      option.textContent = name;
-      monthDropdown.appendChild(option); 
-    });
-
-    monthDropdown.value = currentMonth;
-    // Years
-
-    yearDropDown.innerHTML = "";
-    for (let y = 1900; y<= 2100 ; y++){
-      const option = document.createElement("option");
-      option.value = index;
-      option.textContent = name;
-      yearDropdown.appendChild(option);
-    }
-    yearDropdown.value = currentYear;
+  yearDropdown.innerHTML = "";
+  for (let y = 1900; y <= 2100; y++) {
+    const option = document.createElement("option");
+    option.value = y;
+    option.textContent = y;
+    yearDropdown.appendChild(option);
   }
+  yearDropdown.value = currentYear;
+}
 
-  // Render the calendar grid
-  function renderCalendar(month, year){
-    calendarDiv.innerHTML = ""; // clear old calendar
-    monthHeader.textContent = `${monthsArr[month]} ${year}`;
+// Render the calendar grid
 
-    // days in moth
+function renderCalendar(month, year) {
+  calendarDiv.innerHTML = ""; // clear old calendar
+  monthHeader.textContent = `${monthsArr[month]} ${year}`;
 
-    const daysInMonth = new Date(year, month +1, 0).getDate();
-    const firstDay = new Date(year, month, 1).getDay();
+  // how many days in this month
 
-     // Convert Sunday=0 to Sunday=6 so Monday=0
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDay = new Date(year, month, 1).getDay();
 
-     const startDay = (firstDay + 6) % 7; // Adjust start day for Monday-first calendar
+  // Convert Sunday=0 to Sunday=6 so Monday=0
 
-     let date = 0; // intialize day counter
+  const startDay = (firstDay + 6) % 7; // Adjust start day for Monday-first calendar
 
- // loop through weeks and days
-  for (let week = 0 ; week < 6 ; week++) {
+  let date = 1; // intialize day counter
+
+  // loop through weeks and days
+  for (let week = 0; week < 6; week++) {
     const row = document.createElement("div");
     row.className = "calendar-row";
+    row.style.display = "flex"; // make row a flex container
+    row.style.marginBottom = "2px"; // spacing between rows
 
-    for (let day = 0; day < 7; day++){
+    // 7 days in a week
+    for (let day = 0; day < 7; day++) {
       const cell = document.createElement("div");
       cell.className = "calendar-cell";
-    }
-  }
+      cell.style.border = "1px solid black"; // minimal style
+      cell.style.width = "80px";
+      cell.style.height = "80px";
+      cell.style.textAlign = "center";
+      cell.style.verticalAlign = "middle";
+      cell.style.lineHeight = "80px";
 
+      // Fill empty cells before first day
+
+      if (week === 0 && day < startDay) {
+        cell.textContent = "";
+      } else if (date > daysInMonth) {
+        cell.textContent = "";
+      } else {
+        cell.textContent = date;
+        date++;
+      }
+
+      row.appendChild(cell);
+    }
+
+    calendarDiv.appendChild(row);
+    if (date > daysInMonth) break; // stop creating rows once all days rendered
   }
+}
+// initial setup
+populateDropdowns();
+renderCalendar(currentMonth, currentYear);

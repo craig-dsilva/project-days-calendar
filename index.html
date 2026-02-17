@@ -1,12 +1,38 @@
 <!doctype html>
 <html>
   <head>
+    <style>
+ 
+      table {
+        border-collapse: collapse;
+        width: 80%;
+      }
+
+      th,
+      td {
+        width: 12%; 
+        height: 100px; 
+        text-align: center;
+        vertical-align: top;
+        font-size: 18px;
+        padding: 8px;
+      }
+
+      th {
+        background-color: lightgray;
+        font-weight: bold;
+      }
+      
+        /* Hide the modal close button on page load */
+      #modal-close {
+        display: none;
+      }
+
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Commemorative Days Calendar</title>
-    <link rel="stylesheet" href="style.css" />
     <script type="module" src="common.mjs"></script>
-    <script type="module" src="web.mjs"></script>
   </head>
   <h1 id="current-month">My Calendar ...</h1>
 
@@ -24,5 +50,7 @@
   <br /><br />
 
   <div id="calendar"></div>
+    <script type="module" src="web.mjs"></script>
+
   <body></body>
 </html>
