@@ -36,6 +36,7 @@ if (error) console.error(error);
 try {
   // Generates the ics file
   writeFileSync("event.ics", value);
+  console.log("Ical file successfully generated");
 } catch (error) {
   console.error;
 }
