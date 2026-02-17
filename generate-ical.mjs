@@ -7,7 +7,7 @@ import daysData from "./days.json" with { type: "json" };
 
 const events = [];
 
-for (let i = 2024; i <= 2026; i++) {
+for (let i = 2020; i <= 2030; i++) {
   // Loop through days.json
   for (const event_ of daysData) {
     // Gets the date of events every year
