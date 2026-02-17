@@ -18,7 +18,7 @@ describe("getEventDate", () => {
       event_.dayName,
       event_.occurrence,
     );
-    assert.match(getAdaLovelaceDay.toISOString().slice(0, 10), /2026-10-13/);
+    assert.match(getAdaLovelaceDay.toISOString(), /2026-10-13/);
   });
 
   it("ada lovelace day should return 12th October for 2027", () => {
@@ -28,6 +28,6 @@ describe("getEventDate", () => {
       event_.dayName,
       event_.occurrence,
     );
-    assert.match(getAdaLovelaceDay.toISOString().slice(0, 10), /2027-10-12/);
+    assert.match(getAdaLovelaceDay.toISOString(), /2027-10-12/);
   });
 });
