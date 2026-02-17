@@ -1,0 +1,23 @@
+/* Make the calendar a grid with 7 columns */
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 columns for 7 days */
+  gap: 2px; /* space between cells */
+  margin-top: 20px;
+}
+
+/* Style the actual day cells */
+.calendar-cell {
+  border: 1px solid black;
+  padding: 10px;
+  min-height: 50px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+/* Style the empty cells before the first day */
+.calendar-cell-empty {
+  border: 1px solid #ddd;
+  min-height: 50px;
+  background-color: #eee;
+}
