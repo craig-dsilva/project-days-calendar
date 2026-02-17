@@ -1,7 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert";
 import { getEventDate } from "./common.mjs";
-import { get } from "node:http";
 
 describe("getEventDate", () => {
   const event_ = {
