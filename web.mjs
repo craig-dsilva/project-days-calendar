@@ -65,6 +65,7 @@ const months = ["January", "February", "March", "April", "May", "June",
      const startDay = (firstDay + 6) % 7; // Adjust start day for Monday-first calendar
 
      let date = 0; // intialise day counter
+     
  // loop through weeks and days
   for (let week = 0 ; week < 6 ; week++) {
     const row = document.createElement("div");
