@@ -3,7 +3,7 @@
 // Note that when running locally, in order to open a web page which uses modules, you must serve the directory over HTTP e.g. with https://www.npmjs.com/package/http-server
 // You can't open the index.html file using a file:// URL.
 
-import { getGreeting } from "./common.mjs";
+import { monthsArr } from "./common.mjs";
 import daysData from "./days.json" with { type: "json" };
 
 // Track current month/year 
@@ -23,14 +23,14 @@ const yearDropdown = document.getElementById("year-select");
 
 //Populate month/year dropdowns
 
-const months = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"];
+//const months = ["January", "February", "March", "April", "May", "June",
+  //"July", "August", "September", "October", "November", "December"];
 
   function populateDropdowns () {
     // Months
 
     monthDropdown.innerHTML = "";
-    months.forEach((name, index) => {
+    monthsArr.forEach((name, index) => {
       const option = document.createElement("option");
       option.value = index;
       option.textContent = name;
@@ -53,7 +53,7 @@ const months = ["January", "February", "March", "April", "May", "June",
   // Render the calendar grid
   function renderCalendar(month, year){
     calendarDiv.innerHTML = ""; // clear old calendar
-    monthHeader.textContent = `${months[month]} ${year}`;
+    monthHeader.textContent = `${monthsArr[month]} ${year}`;
 
     // days in moth
 
@@ -64,8 +64,8 @@ const months = ["January", "February", "March", "April", "May", "June",
 
      const startDay = (firstDay + 6) % 7; // Adjust start day for Monday-first calendar
 
-     let date = 0; // intialise day counter
-     
+     let date = 0; // intialize day counter
+
  // loop through weeks and days
   for (let week = 0 ; week < 6 ; week++) {
     const row = document.createElement("div");

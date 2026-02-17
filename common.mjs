@@ -1,5 +1,5 @@
 // These 3 are helper data to use with the getEventDate function
-const monthsArr = [
+export const monthsArr = [
   "January",
   "February",
   "March",
