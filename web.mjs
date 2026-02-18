@@ -75,11 +75,11 @@ function renderCalendar(month, year) {
       const cell = document.createElement("div");
       cell.className = "calendar-cell";
       cell.style.border = "1px solid black"; // minimal style
-      cell.style.width = "80px";
-      cell.style.height = "80px";
+      cell.style.width = "100px";
+      cell.style.height = "60px";
       cell.style.textAlign = "center";
       cell.style.verticalAlign = "middle";
-      cell.style.lineHeight = "80px";
+      cell.style.lineHeight = "60px";
 
       // Fill empty cells before first day
 
