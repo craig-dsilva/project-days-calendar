@@ -59,7 +59,7 @@ function renderCalendar(month, year) {
 
   // Convert Sunday=0 to Sunday=6 so Monday=0
 
-  const startDay = (firstDay + 6) % 7; // Adjust start day for Monday-first calendar
+  const startDay = firstDay // Adjust start day for Sunday-first calendar
 
   let date = 1; // intialize day counter
 
