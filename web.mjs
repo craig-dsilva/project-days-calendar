@@ -102,3 +102,38 @@ function renderCalendar(month, year) {
 // initial setup
 populateDropdowns();
 renderCalendar(currentMonth, currentYear);
+
+// Step 3: Make dropdowns work
+monthDropdown.addEventListener("change", function () {
+  currentMonth = Number(monthDropdown.value); // update month
+  renderCalendar(currentMonth, currentYear); // refresh calendar
+});
+
+yearDropdown.addEventListener("change", function () {
+  currentYear = Number(yearDropdown.value); // update year
+  renderCalendar(currentMonth, currentYear); // refresh calendar
+});
+// move to previous month
+function goToPreviousMonth (){
+  if(currentMonth===0){ // january
+    currentMonth = 11; // wrap to december
+    currentYear--; // go to previous year
+  }else{
+    currentMonth--; // just go to previous month
+  }
+renderCalendar(currentMonth, currentYear);
+}
+
+// move to next month
+
+function goToNextMonth(){
+  if(currentMonth===11){ // december
+    currentMonth = 0; // wrap to january
+    currentYear++; // go to next year
+  }else{
+    currentMonth++; // just go to next month
+  }
+  renderCalendar(currentMonth, currentYear);
+}
+prevBtn.addEventListener("click", goToPreviousMonth);
+nextBtn.addEventListener("click", goToNextMonth);
