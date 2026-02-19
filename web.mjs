@@ -92,8 +92,8 @@ function renderCalendar(month, year) {
       const cell = document.createElement("div");
       cell.className = "calendar-cell";
       cell.style.border = "1px solid black"; // minimal style
-      cell.style.width = "15vw";
-      cell.style.height = "20vh";
+      cell.style.width = "30vw";
+      cell.style.height = "15vh";
       cell.style.textAlign = "center";
       cell.style.verticalAlign = "middle";
 
