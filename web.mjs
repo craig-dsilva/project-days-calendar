@@ -3,7 +3,7 @@
 // Note that when running locally, in order to open a web page which uses modules, you must serve the directory over HTTP e.g. with https://www.npmjs.com/package/http-server
 // You can't open the index.html file using a file:// URL.
 
-import { monthsArr, weeksArr } from "./common.mjs";
+import { monthsArr, weeksArr, getEventDate } from "./common.mjs";
 import daysData from "./days.json" with { type: "json" };
 
 // Track current month/year
@@ -78,7 +78,6 @@ function renderCalendar(month, year) {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const firstDay = new Date(year, month, 1).getDay();
 
-
   let date = 1; // intialize day counter
 
   // loop through weeks and days
@@ -99,17 +98,41 @@ function renderCalendar(month, year) {
       cell.style.verticalAlign = "middle";
       cell.style.lineHeight = "60px";
 
-      // Fill empty cells before first day
+      //   Loops through the daysData array
+      for (const event_ of daysData) {
+        // Gets the formatted date of the event
+        const eventDate = getEventDate(
+          year,
+          event_.monthName,
+          event_.dayName,
+          event_.occurrence,
+        )
+          .toISOString()
+          .slice(0, 10);
 
+        // Formats the date on the calendar to match eventDate
+        const currentDate = `${year}-${month < 9 ? "0" + (month + 1) : month + 1}-${date < 10 ? "0" + date : date}`;
+
+        // Adds the event to the calendar cell
+        if (eventDate === currentDate) {
+          const eventTitleEl = document.createElement("p");
+          eventTitleEl.innerText = event_.name;
+          cell.appendChild(eventTitleEl);
+        }
+      }
+
+      // Fill empty cells before first day
+      const dateEl = document.createElement("p");
       if (week === 0 && day < firstDay) {
-        cell.textContent = "";
+        dateEl.textContent = "";
       } else if (date > daysInMonth) {
-        cell.textContent = "";
+        dateEl.textContent = "";
       } else {
-        cell.textContent = date;
+        dateEl.textContent = date;
         date++;
       }
 
+      cell.appendChild(dateEl);
       row.appendChild(cell);
     }
 
