@@ -1,9 +1,5 @@
 // These 3 are helper data to use with the getEventDate function
-<<<<<<< 7-create-a-script-which-generates-a-ics-file
-const monthsArr = [
-=======
 export const monthsArr = [
->>>>>>> main
   "January",
   "February",
   "March",
@@ -51,16 +47,5 @@ export function getEventDate(year, month, dayOfWeek, occurrence) {
     let day = lastDate - ((lastDayOfWeek - weekIndex + 7) % 7);
     day += (occurrenceIndex + 1) * 7;
     return new Date(year, monthIndex, day, 3);
-  }
-}
-
-// This function fetches the description
-export async function fetchDescription(url) {
-  try {
-    const res = await fetch(url);
-    const text = await res.text();
-    return text;
-  } catch (error) {
-    return error;
   }
 }
