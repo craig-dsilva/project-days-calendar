@@ -110,7 +110,7 @@ function renderCalendar(month, year) {
 
       cell.appendChild(dateEl);
 
-      //   Loops through the daysData array
+      // Loops through the daysData array
       for (const event_ of daysData) {
         // Gets the formatted date of the event
         const eventDate = getEventDate(
