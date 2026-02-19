@@ -14,7 +14,7 @@ export const monthsArr = [
   "December",
 ];
 
-const weeksArr = [
+export const weeksArr = [
   "Sunday",
   "Monday",
   "Tuesday",

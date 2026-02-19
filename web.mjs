@@ -3,7 +3,7 @@
 // Note that when running locally, in order to open a web page which uses modules, you must serve the directory over HTTP e.g. with https://www.npmjs.com/package/http-server
 // You can't open the index.html file using a file:// URL.
 
-import { monthsArr } from "./common.mjs";
+import { monthsArr, weeksArr } from "./common.mjs";
 import daysData from "./days.json" with { type: "json" };
 
 // Track current month/year
@@ -46,11 +46,32 @@ function populateDropdowns() {
   yearDropdown.value = currentYear;
 }
 
+// Render weekday Header
+function renderWeekDays() {
+  const headerRow = document.createElement("div");
+  headerRow.style.display = "flex";
+  headerRow.style.marginBottom = "5px";
+
+  weeksArr.forEach((day) => {
+    const cell = document.createElement("div");
+    cell.style.width = "100px";
+    cell.style.textAlign = "center";
+    cell.style.fontWeight = "bold";
+    cell.textContent = day;
+
+    headerRow.appendChild(cell);
+  });
+  calendarDiv.appendChild(headerRow);
+}
+
 // Render the calendar grid
 
 function renderCalendar(month, year) {
   calendarDiv.innerHTML = ""; // clear old calendar
   monthHeader.textContent = `${monthsArr[month]} ${year}`;
+
+  // Add weekday header row
+  renderWeekDays();
 
   // how many days in this month
 
@@ -59,7 +80,7 @@ function renderCalendar(month, year) {
 
   // Convert Sunday=0 to Sunday=6 so Monday=0
 
-  const startDay = (firstDay + 6) % 7; // Adjust start day for Monday-first calendar
+  const startDay = firstDay; // Adjust start day for Sunday-first calendar
 
   let date = 1; // intialize day counter
 
@@ -114,23 +135,25 @@ yearDropdown.addEventListener("change", function () {
   renderCalendar(currentMonth, currentYear); // refresh calendar
 });
 // move to previous month
-function goToPreviousMonth (){
-  if(currentMonth===0){ // january
+function goToPreviousMonth() {
+  if (currentMonth === 0) {
+    // january
     currentMonth = 11; // wrap to december
     currentYear--; // go to previous year
-  }else{
+  } else {
     currentMonth--; // just go to previous month
   }
-renderCalendar(currentMonth, currentYear);
+  renderCalendar(currentMonth, currentYear);
 }
 
 // move to next month
 
-function goToNextMonth(){
-  if(currentMonth===11){ // december
+function goToNextMonth() {
+  if (currentMonth === 11) {
+    // december
     currentMonth = 0; // wrap to january
     currentYear++; // go to next year
-  }else{
+  } else {
     currentMonth++; // just go to next month
   }
   renderCalendar(currentMonth, currentYear);
