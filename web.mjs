@@ -78,9 +78,6 @@ function renderCalendar(month, year) {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const firstDay = new Date(year, month, 1).getDay();
 
-  // Convert Sunday=0 to Sunday=6 so Monday=0
-
-  const startDay = firstDay; // Adjust start day for Sunday-first calendar
 
   let date = 1; // intialize day counter
 
@@ -104,7 +101,7 @@ function renderCalendar(month, year) {
 
       // Fill empty cells before first day
 
-      if (week === 0 && day < startDay) {
+      if (week === 0 && day < firstDay) {
         cell.textContent = "";
       } else if (date > daysInMonth) {
         cell.textContent = "";
