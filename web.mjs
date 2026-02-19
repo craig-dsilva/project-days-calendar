@@ -92,11 +92,23 @@ function renderCalendar(month, year) {
       const cell = document.createElement("div");
       cell.className = "calendar-cell";
       cell.style.border = "1px solid black"; // minimal style
-      cell.style.width = "100px";
-      cell.style.height = "60px";
+      cell.style.width = "15vw";
+      cell.style.height = "20vh";
       cell.style.textAlign = "center";
       cell.style.verticalAlign = "middle";
-      cell.style.lineHeight = "60px";
+
+      // Fill empty cells before first day
+      const dateEl = document.createElement("p");
+      if (week === 0 && day < firstDay) {
+        dateEl.textContent = "";
+      } else if (date > daysInMonth) {
+        dateEl.textContent = "";
+      } else {
+        dateEl.textContent = date;
+        date++;
+      }
+
+      cell.appendChild(dateEl);
 
       //   Loops through the daysData array
       for (const event_ of daysData) {
@@ -120,19 +132,6 @@ function renderCalendar(month, year) {
           cell.appendChild(eventTitleEl);
         }
       }
-
-      // Fill empty cells before first day
-      const dateEl = document.createElement("p");
-      if (week === 0 && day < firstDay) {
-        dateEl.textContent = "";
-      } else if (date > daysInMonth) {
-        dateEl.textContent = "";
-      } else {
-        dateEl.textContent = date;
-        date++;
-      }
-
-      cell.appendChild(dateEl);
       row.appendChild(cell);
     }
 
