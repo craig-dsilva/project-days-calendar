@@ -1,9 +1,5 @@
 // These 3 are helper data to use with the getEventDate function
-<<<<<<< 7-create-a-script-which-generates-a-ics-file
-const monthsArr = [
-=======
 export const monthsArr = [
->>>>>>> main
   "January",
   "February",
   "March",
