@@ -54,7 +54,7 @@ function renderWeekDays() {
 
   weeksArr.forEach((day) => {
     const cell = document.createElement("div");
-    cell.style.width = "100px";
+    cell.style.width = "15vw";
     cell.style.textAlign = "center";
     cell.style.fontWeight = "bold";
     cell.textContent = day;
