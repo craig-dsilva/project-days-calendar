@@ -97,18 +97,9 @@ function renderCalendar(month, year) {
       cell.style.textAlign = "center";
       cell.style.verticalAlign = "middle";
 
-      // Fill empty cells before first day
-      const dateEl = document.createElement("p");
-      if (week === 0 && day < firstDay) {
-        dateEl.textContent = "";
-      } else if (date > daysInMonth) {
-        dateEl.textContent = "";
-      } else {
-        dateEl.textContent = date;
-        date++;
-      }
-
-      cell.appendChild(dateEl);
+      // Track the state if the date is the event date
+      let eventDay = false;
+      const eventTitleEl = document.createElement("p");
 
       // Loops through the daysData array
       for (const event_ of daysData) {
@@ -124,14 +115,26 @@ function renderCalendar(month, year) {
 
         // Formats the date on the calendar to match eventDate
         const currentDate = `${year}-${month < 9 ? "0" + (month + 1) : month + 1}-${date < 10 ? "0" + date : date}`;
-
         // Adds the event to the calendar cell
         if (eventDate === currentDate) {
-          const eventTitleEl = document.createElement("p");
+          eventDay = true;
           eventTitleEl.innerText = event_.name;
-          cell.appendChild(eventTitleEl);
         }
       }
+
+      // Fill empty cells before first day
+      const dateEl = document.createElement("p");
+      if (week === 0 && day < firstDay) {
+        dateEl.textContent = "";
+      } else if (date > daysInMonth) {
+        dateEl.textContent = "";
+      } else {
+        dateEl.textContent = date;
+        date++;
+      }
+
+      cell.appendChild(dateEl);
+      if (eventDay) cell.appendChild(eventTitleEl);
       row.appendChild(cell);
     }
 
