@@ -49,14 +49,3 @@ export function getEventDate(year, month, dayOfWeek, occurrence) {
     return new Date(year, monthIndex, day, 3);
   }
 }
-
-// This function fetches the description
-export async function fetchDescription(url) {
-  try {
-    const res = await fetch(url);
-    const text = await res.text();
-    return text;
-  } catch (error) {
-    return error;
-  }
-}
